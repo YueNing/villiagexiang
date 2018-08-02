@@ -1,0 +1,21 @@
+cchat2:
+  type: format
+  format: "<&b><npc.name><&f><&co> <&a><text>"
+
+test_npc:
+  type: assignment
+  actions:
+    on assignment:
+      - trigger name:click state:true
+      - trigger name:chat state:true
+  interact scripts:
+    - 10 test_npc_interact
+
+test_npc_interact:
+  type: interact
+  steps:
+    1:
+      click trigger:
+        script:
+          - narrate format:cchat2 "Hello, Would you like a tour?"
+          - narrate "Say /yes/ or /no/"

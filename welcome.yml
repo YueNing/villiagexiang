@@ -1,0 +1,45 @@
+cchat:
+  type: format
+  format: "<&b><npc.name><&f><&co> <&a><text>"
+
+welcome_npc:
+  type: assignment
+  actions:
+    on assignment:
+      - trigger name:click state:true
+      - trigger name:chat state:true
+  interact scripts:
+    - 10 my_npc_interact
+
+my_npc_interact:
+  type: interact
+  steps:
+    1:
+      click trigger:
+        script:
+          - narrate format:cchat "Hello, Would you like a tour?"
+          - narrate "Say /yes/ or /no/"
+
+      chat trigger:
+        1:
+          trigger: /yes/ I'd love to
+          script:
+            - narrate format:cchat "Okay great, follow me!"
+            - ^create player WelcomeNPC <npc.location> save:WelcomeNPC
+            - ^adjust <player> hide_entity:<npc>
+            - ^adjust <server.list_online_players.exclude[<player>]> hide_entity:<entry[WelcomeNPC].created_npc>
+            - ^run my_npc_path npc:<entry[WelcomeNPC].created_npc> def:<^npc>
+            - ^run my_npc_talk npc:<entry[WelcomeNPC].created_npc>
+            - zap 2
+        2:
+          trigger: /no/ i don't want to
+          script:
+            - narrate format:cchat "Kbye"
+
+my_npc_path:
+  type: task
+  script:
+
+my_npc_talk:
+  type: task
+  script:
