@@ -24,8 +24,21 @@ captain_hallis_interact:
 
         script:
 
+          - ^flag npc npc_spawn_location:<npc.location>
           - narrate format:player_chat "哈里斯队长你好。我和村长已经说过了，今天我来参加守卫试炼。"
           - wait 5t
           - narrate format:captain_hallis_chat "<player.name> 你好啊，看来今天我们队里又要有新人了。来，拿起这把剑，看看你是不是像你父亲一样战斗。"
           - wait 5t
-          - give i@stone_sword
+          - if !<player.has_flag[task_get_the_woodsword]> {
+            - give i@stone_sword
+            - flag player task_get_the_woodsword:1
+          }
+          - trigger name:click state:false
+          - if !<player.has_flag[task_attack]> {
+            - attack target:<player>
+            - flag player task_attack:1
+          }
+          - wait 10S
+          - attack stop
+          - teleport <npc> <npc.flag[npc_spawn_location]>
+          - trigger name:click state:true
