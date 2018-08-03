@@ -1,0 +1,355 @@
+tourguide:
+
+    type: assignment
+
+    interact scripts:
+
+    - 1 fulltour
+
+
+
+fulltour:
+
+    type: interact
+
+    steps:
+
+        1:
+
+            click trigger:
+
+                script:
+
+                 - chat "Hello there <player.name>, do you need help finding anything?"
+
+            chat trigger:
+
+                1:
+
+                    trigger: /Yes/, actually, what are my options?
+
+                    script:
+
+                    - chat "You can go to the Blacksmith, Church, Stables, Alchemist, Library, Inn, or the Food Hall."
+
+                2:
+
+                    trigger: /No/, not at this time.
+
+                    script:
+
+                    - random 4
+
+                    - chat "Alright!"
+
+                    - chat "Take Care!"
+
+                    - chat "Be seeing you!"
+
+                    - chat "Go forth, for victory!"
+
+                3:
+
+                    trigger: I am looking to find the /Blacksmith/.
+
+                    script:
+
+                    - chat "Excellent, I will Teleport you now, please confirm by saying 'blacksmith' or 'no' to cancel."
+
+                    - zap step:2
+
+                4:
+
+                    trigger: I am looking to find the /Church/.
+
+                    script:
+
+                    - chat "Excellent, I will Teleport you now, please confirm by saying 'Church' or 'no' to cancel."
+
+                    - zap step:2
+
+                5:
+
+                    trigger: I am looking to find the /regex:(?i)stable(s)?/.
+
+                    script:
+
+                    - chat "Excellent, I will Teleport you now, please confirm by saying 'Stables' or 'no' to cancel."
+
+                    - zap step:2
+
+                6:
+
+                    trigger: I am looking to find the /Alchemist/.
+
+                    script:
+
+                    - chat "Excellent, I will Teleport you now, please confirm by saying 'Alchemist' or 'no' to cancel."
+
+                    - zap step:2
+
+                7:
+
+                    trigger: I am looking to find the /Library/.
+
+                    script:
+
+                    - chat "Excellent, I will Teleport you now, please confirm by saying 'Library' or 'no' to cancel."
+
+                    - zap step:2
+
+                8:
+
+                    trigger: I am looking to find the /Inn/.
+
+                    script:
+
+                    - chat "Excellent, I will Teleport you now, please confirm by saying 'Inn' or 'no' to cancel."
+
+                    - zap step:2
+
+                9:
+
+                    trigger: I am looking to find the /Food Hall/.
+
+                    script:
+
+                    - chat "Excellent, I will Teleport you now, please confirm by saying 'Food Hall' or 'no' to cancel."
+
+                    - zap step:2
+
+                hello:
+
+                    trigger: /regex:(?i)hello|hey|hi/
+
+                    script:
+
+                    - random 3
+
+                    - chat "Hey there!"
+
+                    - chat "Hello!"
+
+                    - chat "Hi, <player.name>!"
+
+                bye:
+
+                    trigger: /regex:(?i)bye|see ya|goodbye|good bye|later/
+
+                    script:
+
+                    - random 4
+
+                    - chat "See ya!"
+
+                    - chat "Take Care!"
+
+                    - chat "Be seeing you!"
+
+                    - chat "Go forth, for victory!"
+
+                unknown:
+
+                    trigger: /regex:.+/
+
+                    script:
+
+                    - chat "I'm sorry, I don't understand!"
+
+        2:
+
+            click trigger:
+
+                script:
+
+                - chat "Hello there <player.name>, do you need help finding anything?"
+
+                - zap step:1
+
+            chat trigger:
+
+                blacksmith:
+
+                    trigger: I confirm /Blacksmith/!
+
+                    script:
+
+                    - chat "Summoning portal, this will only take a second."
+
+                    - wait 1
+
+                    - animate <npc> animation:ARM_SWING
+
+                    - wait 1
+
+                    - execute as_npc "tp <player.name> X Y Z"
+
+                    - zap step:1
+
+                church:
+
+                    trigger: I confirm /Church/!
+
+                    script:
+
+                    - chat "Summoning portal, this will only take a second."
+
+                    - wait 1
+
+                    - animate <npc> animation:ARM_SWING
+
+                    - wait 1
+
+                    - execute as_npc "tp <player.name> 181 69 87"
+
+                    - zap step:1
+
+                stables:
+
+                    trigger: I confirm /Stables/!
+
+                    script:
+
+                    - chat "Summoning portal, this will only take a second."
+
+                    - wait 1
+
+                    - animate <npc> animation:ARM_SWING
+
+                    - wait 1
+
+                    - execute as_npc "tp <player.name> X Y Z"
+
+                    - zap step:1
+
+                alchemist:
+
+                    trigger: I confirm /Alchemist/!
+
+                    script:
+
+                    - chat "Summoning portal, this will only take a second."
+
+                    - wait 1
+
+                    - animate <npc> animation:ARM_SWING
+
+                    - wait 1
+
+                    - execute as_npc "tp <player.name> X Y Z"
+
+                    - zap step:1
+
+                library:
+
+                    trigger: I confirm /Library/!
+
+                    script:
+
+                    - chat "Summoning portal, this will only take a second."
+
+                    - wait 1
+
+                    - animate <npc> animation:ARM_SWING
+
+                    - wait 1
+
+                    - execute as_npc "tp <player.name> X Y Z"
+
+                    - zap step:1
+
+                inn:
+
+                    trigger: I confirm /Inn/!
+
+                    script:
+
+                    - chat "Summoning portal, this will only take a second."
+
+                    - wait 1
+
+                    - animate <npc> animation:ARM_SWING
+
+                    - wait 1
+
+                    - execute as_npc "tp <player.name> X Y Z"
+
+                    - zap step:1
+
+                foodhall:
+
+                    trigger: I confirm /Food Hall/!
+
+                    script:
+
+                    - chat "Summoning portal, this will only take a second."
+
+                    - wait 1
+
+                    - animate <npc> animation:ARM_SWING
+
+                    - wait 1
+
+                    - execute as_npc "tp <player.name> X Y Z"
+
+                    - zap step:1
+
+                cancel:
+
+                    trigger: /No/ actaully, I change my mind.
+
+                    script:
+
+                    - chat "Not a problem, please let me know if I can be of any assistance!"
+
+                    - zap step:1
+
+                hello:
+
+                    trigger: /regex:(?i)hello|hey|hi/
+
+                    script:
+
+                    - random 3
+
+                    - chat "Hey there!"
+
+                    - chat "Hello!"
+
+                    - chat "Hi, <player.name>!"
+
+                    - zap step:1
+
+                bye:
+
+                    trigger: /regex:(?i)bye|see ya|goodbye|good bye|later/
+
+                    script:
+
+                    - random 4
+
+                    - chat "See ya!"
+
+                    - chat "Take Care!"
+
+                    - chat "Be seeing you!"
+
+                    - chat "Go forth, for victory!"
+
+                    - zap step:1
+
+                unknown:
+
+                    trigger: /regex:.+/
+
+                    script:
+
+                    - chat "I'm sorry, I don't understand!"
+
+
+
+
+
+
+
+

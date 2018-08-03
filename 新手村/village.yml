@@ -1,0 +1,37 @@
+village:
+
+    type: assignment
+
+    interact scripts:
+
+    - 1 village_head
+
+player_chat:
+
+  type: format
+
+  format: "<player.name><&f><&co> <text>"
+
+village_chat:
+
+  type: format
+
+  format: "<&b><npc.name><&f><&co> <&a><text>"
+
+village_head:
+
+  type: interact
+
+  steps:
+
+    1:
+
+      click trigger:
+
+        script:  
+
+          - narrate format:player_chat "早上好啊，村长。告诉你一个好消息，今天我十八岁了，可以参加我们村的守卫试炼了。我已经等不及了。" 
+          
+          - wait 5t
+          
+          - narrate format:village_chat "早上好啊，<player.name>。你不要着急嘛，时间过的可真快啊。想当年你奶奶带着你父亲搬过来时，我还是个小孩子，现在连你都这么大了。可怜的孩子，你父亲为保卫村庄战死时，你才十二岁…….啊，我的话太多了。那个，试炼你就找队长哈里斯吧。"

@@ -1,0 +1,31 @@
+captain_hallis:
+
+    type: assignment
+
+    interact scripts:
+
+    - 1 captain_hallis_interact
+
+captain_hallis_chat:
+
+  type: format
+
+  format: "<&b><npc.name><&f><&co> <&a><text>"
+
+captain_hallis_interact:
+
+  type: interact
+
+  steps:
+
+    1:
+
+      click trigger:
+
+        script:
+
+          - narrate format:player_chat "哈里斯队长你好。我和村长已经说过了，今天我来参加守卫试炼。"
+          - wait 5t
+          - narrate format:captain_hallis_chat "<player.name> 你好啊，看来今天我们队里又要有新人了。来，拿起这把剑，看看你是不是像你父亲一样战斗。"
+          - wait 5t
+          - give i@stone_sword

@@ -1,21 +1,22 @@
-cchat2:
-  type: format
-  format: "<&b><npc.name><&f><&co> <&a><text>"
-
-test_npc:
+myassignment:
   type: assignment
   actions:
     on assignment:
-      - trigger name:click state:true
+      - tirgger name:click state:true
       - trigger name:chat state:true
   interact scripts:
-    - 10 test_npc_interact
+    - 10 npc_killquest_interact
 
-test_npc_interact:
+npc_killquest_interact:
   type: interact
   steps:
     1:
       click trigger:
         script:
-          - narrate format:cchat2 "Hello, Would you like a tour?"
-          - narrate "Say /yes/ or /no/"
+          - narrate format:cchat "hello there. Would you care for a special prize?"
+          - wait 5t
+          - narrate format:cchat "If so, you can kill 5 zombie for me."
+          - wait 5t
+          - narrate format:cchat "Will you accept this request?"
+          - wait 5t
+          - narrate "jjjj"

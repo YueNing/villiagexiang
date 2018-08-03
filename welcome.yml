@@ -25,11 +25,11 @@ my_npc_interact:
           trigger: /yes/ I'd love to
           script:
             - narrate format:cchat "Okay great, follow me!"
-            - ^create player WelcomeNPC <npc.location> save:WelcomeNPC
+            - ^create player testNPC <npc.location> save:testNPC
             - ^adjust <player> hide_entity:<npc>
-            - ^adjust <server.list_online_players.exclude[<player>]> hide_entity:<entry[WelcomeNPC].created_npc>
-            - ^run my_npc_path npc:<entry[WelcomeNPC].created_npc> def:<^npc>
-            - ^run my_npc_talk npc:<entry[WelcomeNPC].created_npc>
+            - ^adjust <server.list_online_players.exclude[<player>]> hide_entity:<entry[testNPC].created_npc>
+            - ^run my_npc_path npc:<entry[testNPC].created_npc> def:<^npc>
+            - ^run my_npc_talk npc:<entry[testNPC].created_npc>
             - zap 2
         2:
           trigger: /no/ i don't want to
@@ -38,7 +38,18 @@ my_npc_interact:
 
 my_npc_path:
   type: task
+  definition: masternpc
   script:
+    - ^flag <npc> step:1
+    - ~walk <def[masternpc].anchro[spot1]> auto_range
+    - ^flag <npc> step:2
+    - ~walk <def[masternpc].anchro[spot2]> auto_range
+    - ^flag <npc> step:3
+    - ~walk <def[masternpc].anchro[spot3]> auto_range
+    - wait 1
+    - remove <npc>
+    - adjust <player> show_entity:<def[masternpc]>
+    - zap 1 script: s@my_npc_interact
 
 my_npc_talk:
   type: task
